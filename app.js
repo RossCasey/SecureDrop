@@ -5,11 +5,11 @@ const db = require('sqlite');
 
 module.exports = (db) => {
 
-  const app = express(); 
+  const app = express();
 
   app.use(bodyParser.json({limit: '16kb'}));
   app.use(express.static('public'));
-  app.use('/drop', DropRouter(db));
+  app.use('/api/v1/drop', DropRouter(db));
 
   return app;
 }

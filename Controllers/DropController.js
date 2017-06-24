@@ -8,8 +8,8 @@ module.exports = (db) => {
       return db.drop.create(id, cipherText).then(() => {
         return Promise.resolve(id);
       }).catch((err) => {
-        return Promse.reject(new Error('database error'));
-      });
+        return Promise.reject(err);
+      })
     },
 
     get(id) {
@@ -20,7 +20,9 @@ module.exports = (db) => {
         return db.drop.claim(id).then(() => {
           return Promise.resolve(data.cipherText);
         });
-      });
+      }).catch((err) => {
+        return Promise.reject(err); 
+      })
     }
   }
 }

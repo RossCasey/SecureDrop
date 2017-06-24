@@ -8,21 +8,21 @@ module.exports = (db) => {
   const drop = DropController(db);
 
   router.post('/', createValidator, (req, res) => {
-    drop.create('test').then((id) => {
+    drop.create(req.body.cipherText).then((id) => {
       res.json({id: id});
+    }).catch((err) => {
+      res.status(500).json({error: 'internal error'});
     })
   });
 
   router.get('/:id', (req, res) => {
-    drop.get(req.params.id)
-    .then((cipherText) => {
+    drop.get(req.params.id).then((cipherText) => {
       if( ! cipherText) {
-        //404
+        res.status(404).json({error: 'drop not found'});
       }
       res.json({cipherText: cipherText});
-    })
-    .catch((err) => {
-      //500
+    }).catch((err) => {
+      res.status(500).json({error: 'internal error'});
     })
   });
 
