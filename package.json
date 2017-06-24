@@ -1,0 +1,31 @@
+{
+  "name": "secure-drop",
+  "version": "0.0.1",
+  "description": "A self contained site for the transfer of text data securely.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/mocha test/**/test-*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RossCasey/SecureDrop.git"
+  },
+  "author": "Ross Casey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RossCasey/SecureDrop/issues"
+  },
+  "homepage": "https://github.com/RossCasey/SecureDrop#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "connect": "^3.6.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "shortid": "^2.2.8",
+    "sqlite": "^2.8.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.4.2",
+    "supertest": "^3.0.0"
+  }
+}

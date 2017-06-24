@@ -1,0 +1,9 @@
+-- Up
+CREATE TABLE drops (
+  id VARCHAR PRIMARY KEY,
+  cipherText TEXT NOT NULL,
+  created DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Down
+DROP TABLE drops; 
