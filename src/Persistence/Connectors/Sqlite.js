@@ -4,12 +4,16 @@ function getDropApi(sqlite) {
   return {
     create(id, cipherText) {
       return sqlite.run('INSERT INTO drops(id, cipherText) VALUES(:id, :cipherText)', {':id':id, ':cipherText':cipherText});
+
     },
     get(id) {
-      return sqlite.get('SELECT * FROM drops WHERE claimed = 0 AND created >= date(\'now\',\'-1 day\') id = ? LIMIT 1', id);
+      return sqlite.get('SELECT * FROM drops WHERE claimed = 0 AND created > (strftime(\'%s\', \'now\') - 86400) AND id = ? LIMIT 1', id);
     },
     claim(id) {
       return sqlite.run('UPDATE drops SET claimed = 1 WHERE id = ?', id);
+    },
+    raw(query, data) {
+      return sqlite.run(query, data);
     }
   }
 }
@@ -26,11 +30,11 @@ module.exports = () => {
   const force = process.env.DB_MIGRATE_FORCE || false;
 
   return sqlite.open(path, { Promise }).then(() => {
-    if(migrate) return sql.migrate({ force: force});
+    if(migrate) return sqlite.migrate({ force: force });
     return Promise.resolve();
   }).then(() => {
     return getApi(sqlite);
   }).catch((err) => {
     throw err;
-  })
+  });
 };

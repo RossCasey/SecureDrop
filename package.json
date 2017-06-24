@@ -4,7 +4,8 @@
   "description": "A self contained site for the transfer of text data securely.",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/mocha test/**/test-*"
+    "test": "node_modules/.bin/mocha test/**/test-*",
+    "cover": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -- test/**/test-*"
   },
   "repository": {
     "type": "git",
@@ -21,11 +22,14 @@
     "connect": "^3.6.2",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
+    "moment": "^2.18.1",
     "shortid": "^2.2.8",
     "sqlite": "^2.8.0"
   },
   "devDependencies": {
+    "istanbul": "^0.4.5",
     "mocha": "^3.4.2",
+    "proxyquire": "^1.8.0",
     "sinon": "^2.3.5",
     "supertest": "^3.0.0"
   }

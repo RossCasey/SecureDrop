@@ -12,7 +12,7 @@ module.exports = (db) => {
       res.json({id: id});
     }).catch((err) => {
       res.status(500).json({error: 'internal error'});
-    })
+    }); 
   });
 
   router.get('/:id', (req, res) => {
@@ -23,7 +23,7 @@ module.exports = (db) => {
       res.json({cipherText: cipherText});
     }).catch((err) => {
       res.status(500).json({error: 'internal error'});
-    })
+    });
   });
 
   return router;

@@ -1,5 +1,5 @@
 const assert = require('assert');
-const DropController = require('../../../src/Controllers/DropController');
+const DropController = require('../../src/Controllers/DropController');
 const sinon = require('sinon');
 
 describe('DropController', () => {
@@ -36,7 +36,6 @@ describe('DropController', () => {
         return Promise.reject(new Error('should not get here'));
       }).catch((err) => {
         assert.strictEqual(err.message, 'error');
-        return Promise.resolve();
       });
     });
   });
@@ -59,6 +58,25 @@ describe('DropController', () => {
         assert.ok(db.drop.get.calledWith('abc'));
         assert.ok(db.drop.claim.called);
         assert.ok(db.drop.claim.calledWith('abc'));
+      });
+    });
+
+    it('should return an empty promise if database returns empty promise', () => {
+      const db = {
+        drop: {
+          get: sinon.stub().returns(Promise.resolve()),
+          claim() {
+            assert.ok(false, 'should not get here');
+          }
+        }
+      };
+
+      const dropController = DropController(db);
+
+      return dropController.get('abc').then((cipherText) => {
+        assert.ok(cipherText === undefined);
+        assert.ok(db.drop.get.called);
+        assert.ok(db.drop.get.calledWith('abc'));
       });
     });
 
@@ -94,7 +112,6 @@ describe('DropController', () => {
         return Promise.reject(new Error('should not get here'));
       }).catch((err) => {
         assert.strictEqual(err.message, 'error');
-        return Promise.resolve();
       });
     });
 
@@ -116,7 +133,6 @@ describe('DropController', () => {
         assert.ok(db.drop.get.called);
         assert.ok(db.drop.get.calledWith('abc'));
         assert.strictEqual(err.message, 'error');
-        return Promise.resolve();
       });
     });
   });

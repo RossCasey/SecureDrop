@@ -120,6 +120,25 @@ describe('Drop API', () => {
       });
   });
 
+  it('should return 404 if the database return empty promise for GET /drop/:id', () => {
+    const db = {
+      drop: {
+        get(id) {
+          return Promise.resolve();
+        }
+      }
+    };
+
+    const app = App(db);
+
+    return request(app)
+      .get('/api/v1/drop/abc')
+      .expect(404)
+      .then((response) => {
+        assert.ok(response.body.error.includes('drop not found'));
+      });
+  });
+
   it('should return 500 if the database throws an error during POST /drop', () => {
     const db = {
       drop: {
