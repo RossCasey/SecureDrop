@@ -1,5 +1,5 @@
 const assert = require('assert');
-const Sqlite = require('../../src/Persistence/Connectors/Sqlite');
+const Sqlite = require('../../../src/Persistence/Connectors/Sqlite');
 const fs = require('fs');
 const moment = require('moment');
 

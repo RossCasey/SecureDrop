@@ -4,7 +4,7 @@
   "description": "A self contained site for the transfer of text data securely.",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/mocha test/**/test-*",
+    "test": "node_modules/.bin/mocha test/backend/**/test-*",
     "cover": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -- test/**/test-*"
   },
   "repository": {
@@ -29,7 +29,6 @@
   "devDependencies": {
     "istanbul": "^0.4.5",
     "mocha": "^3.4.2",
-    "proxyquire": "^1.8.0",
     "sinon": "^2.3.5",
     "supertest": "^3.0.0"
   }
