@@ -1,5 +1,5 @@
 const assert = require('assert');
-const Sqlite = require('../../../src/Persistence/Connectors/Sqlite');
+const Sqlite = require('../../../src/server/Persistence/Connectors/Sqlite');
 const fs = require('fs');
 const moment = require('moment');
 
@@ -21,7 +21,7 @@ describe('Sqlite', () => {
   })
 
   describe('create', () => {
-    it('should create a drop', () => {1498255038
+    it('should create a drop', () => {
       let _db;
       return Sqlite().then((db) => {
         _db = db;
