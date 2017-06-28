@@ -4,3 +4,4 @@ coverage
 .env
 src/client/public/dist/*
 *.sqlite
+*-bundle.js
