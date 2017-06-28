@@ -70,7 +70,8 @@
 "use strict";
 
 
-console.log('goodbype');
+console.log('another test');
 
 /***/ })
 /******/ ]);
+//# sourceMappingURL=test-bundle.js.map
