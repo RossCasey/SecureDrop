@@ -4,5 +4,6 @@ coverage
 .env
 *.sqlite
 *-bundle.js
+*-bundle.js.map
 .idea
 *.iml
