@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const DropRouter = require('./Routers/DropRouter');
-const db = require('sqlite');
 
 module.exports = (db) => {
 
@@ -13,8 +12,8 @@ module.exports = (db) => {
 
   if(process.env.APP_ENV === 'development') {
     app.use('/test', express.static('test/client/index.html'));
-    app.use('/test/script.js', express.static('test/client/bundle.js')); 
+    app.use('/test/script.js', express.static('test/client/test-bundle.js'));
   }
 
   return app;
-}
+};

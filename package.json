@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/RossCasey/SecureDrop#readme",
   "dependencies": {
+    "base-64": "^0.1.0",
+    "base64-arraybuffer": "^0.1.5",
     "body-parser": "^1.17.2",
     "connect": "^3.6.2",
     "dotenv": "^4.0.0",

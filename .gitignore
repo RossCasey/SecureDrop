@@ -2,6 +2,7 @@
 node_modules
 coverage
 .env
-src/client/public/dist/*
 *.sqlite
 *-bundle.js
+.idea
+*.iml

@@ -1,1 +1,1 @@
-console.log('another test');
+require('./test-encryption'); 
