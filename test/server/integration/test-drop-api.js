@@ -1,5 +1,5 @@
 const request = require('supertest');
-const App = require('../../src/app');
+const App = require('../../../src/server/app');
 const assert = require('assert');
 
 describe('Drop API', () => {

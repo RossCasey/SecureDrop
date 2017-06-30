@@ -1,3 +1,9 @@
 .DS_Store
 node_modules
 coverage
+.env
+*.sqlite
+*-bundle.js
+*-bundle.js.map
+.idea
+*.iml

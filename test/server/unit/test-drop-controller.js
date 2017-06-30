@@ -1,5 +1,5 @@
 const assert = require('assert');
-const DropController = require('../../src/Controllers/DropController');
+const DropController = require('../../../src/server/Controllers/DropController');
 const sinon = require('sinon');
 
 describe('DropController', () => {
