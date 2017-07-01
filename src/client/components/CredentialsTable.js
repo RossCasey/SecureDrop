@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Clipboard from 'clipboard';
 
 class Credentials extends Component {
     constructor(props) {
@@ -10,11 +9,10 @@ class Credentials extends Component {
         const link = this.props.credentials.link;
         const password = this.props.credentials.password;
         const index = this.props.index;
-        new Clipboard('.copyButton');
         return (
             <tr>
-                <td id={`link-${index}`}>{link}<button className="btn btn-default btn-xs copyButton" data-clipboard-target={`#link-${index}`}>Copy</button></td>
-                <td id={`password-${index}`}>{password}<button className="btn btn-default btn-xs copyButton" data-clipboard-target={`#password-${index}`}>Copy</button></td>
+                <td id={`link-${index}`}>{link}</td>
+                <td id={`password-${index}`}>{password}</td>
             </tr>
         );
     }
@@ -33,7 +31,7 @@ class CredentialsTable extends Component {
         });
 
         return (
-            <div id="credentialsTable" className="table-responsive">
+            <div id="credentials-table" className="table-responsive">
                 <table className="table table-bordered table-hover">
                     <thead>
                     <tr>

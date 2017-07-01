@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions/dropActions';
 import {AWAITING_PASSWORD, DECRYPTED, NOT_FOUND} from '../constants/dropStates';
-import '../public/css/Drop.css';
 import Error from './Error';
 import PasswordEntry from './PasswordEntry';
 
