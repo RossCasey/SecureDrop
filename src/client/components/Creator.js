@@ -1,58 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions/credentialActions';
+import CredentialsTable from './CredentialsTable';
+import Error from './Error';
+import '../public/css/Creator.css';
 
-class Credentials extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <tr>
-                <td>{this.props.credentials.link}</td>
-                <td>{this.props.credentials.password}</td>
-            </tr>
-        );
-    }
-}
-
-class CredentialsTable extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        const credentials = [];
-
-        this.props.credentials.forEach((credentialsInstance, index) => {
-            credentials.push(<Credentials key={index} credentials={credentialsInstance}/>);
-        });
-
-        return (
-            <table>
-                <thead>
-                    <tr>
-                        <th>Link</th>
-                        <th>Password</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {credentials}
-                </tbody>
-            </table>
-        );
-    }
-}
-
-class Creator extends React.Component {
+class Creator extends Component {
     constructor(props) {
         super(props);
         this.state = {data: ''};
         this.createCredentials = this.createCredentials.bind(this);
         this.onDataChange = this.onDataChange.bind(this);
         this.getButtonText = this.getButtonText.bind(this);
+        this.hasDropBeenCreated = this.hasDropBeenCreated.bind(this);
+        this.clear = this.clear.bind(this);
+        this.hasError = this.hasError.bind(this);
     }
 
     createCredentials() {
@@ -64,27 +27,40 @@ class Creator extends React.Component {
         this.setState({data: e.target.value});
     }
 
+    hasDropBeenCreated() {
+        return this.props.credentials.length !== 0;
+    }
+
+    hasError() {
+        return this.props.error;
+    }
+
     getButtonText() {
-        if(this.props.credentials.length === 0) {
-            return 'Create Drop';
-        }
-        return 'Create Another Drop';
+        return this.hasDropBeenCreated() ? 'Create Another Drop' : 'Create Drop';
+    }
+
+    clear() {
+        const {clearCredentials} = this.props.actions;
+        clearCredentials();
     }
 
     render() {
         return (
-            <div>
-                <h1>Creator</h1>
-                <textarea onChange={this.onDataChange} defaultValue={'Type here'}/>
-                <button onClick={this.createCredentials}>{this.getButtonText()}</button>
-                {this.props.credentials.length > 0 && <CredentialsTable {...this.props}/>}
+            <div className="form-group">
+                {this.hasError() && <Error {...this.props}/>}
+                <h3>Enter Data To Securely Transfer:</h3>
+                <textarea onChange={this.onDataChange} className="form-control" rows="10" readOnly={this.hasDropBeenCreated()}/>
+                <button type="button" onClick={this.createCredentials} className="btn btn-primary btn-lg control-button">{this.getButtonText()}</button>
+                {this.hasDropBeenCreated() && <button type="button"  className="btn btn-danger btn-lg control-button" onClick={this.clear}>Clear</button>}
+                {this.hasDropBeenCreated() && <CredentialsTable {...this.props}/>}
             </div>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    credentials: state.credentials.list
+    credentials: state.credentials.list,
+    error: state.credentials.error
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -2,72 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions/dropActions';
-import {
-    AWAITING_PASSWORD,
-    DECRYPTED,
-    ERROR
-} from '../constants/dropStates';
-
-class Spinner extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <p>Spinner!</p>
-        );
-    }
-}
-
-class PasswordEntry extends Component {
-    constructor(props) {
-        super(props);
-        this.submitPassword = this.submitPassword.bind(this);
-        this.onPasswordChange = this.onPasswordChange.bind(this);
-        this.state = {password:''};
-    }
-
-    onPasswordChange(e) {
-        this.setState({password: e.target.value});
-    }
-
-    submitPassword(e) {
-        e.preventDefault();
-        this.props.decrypt(this.state.password);
-    }
-
-    render() {
-        return (
-            <form onSubmit={this.submitPassword}>
-                <input onChange={this.onPasswordChange} type="password"/>
-                <button>Decrypt</button>
-            </form>
-        )
-    }
-}
-
-class DropDisplay extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <div>{this.props.data}</div>
-        );
-    }
-}
-
-class Error extends Component {
-    render() {
-        return (
-            <div>
-                <h1>{this.props.error}</h1>
-            </div>
-        );
-    }
-}
+import {AWAITING_PASSWORD, DECRYPTED, NOT_FOUND} from '../constants/dropStates';
+import Error from './Error';
+import PasswordEntry from './PasswordEntry';
 
 class Drop extends Component {
     constructor(props) {
@@ -91,19 +28,30 @@ class Drop extends Component {
         const status = this.props.drop.status;
         switch(status) {
             case AWAITING_PASSWORD:
-                return <PasswordEntry decrypt={this.decryptDrop}/>;
-            case ERROR:
-                return <Error error={this.props.drop.error}/>;
+                return (
+                    <div>
+                        {this.props.error && <Error {...this.props}/>}
+                        <PasswordEntry decrypt={this.decryptDrop}/>
+                    </div>
+                );
             case DECRYPTED:
-                return <DropDisplay data={this.props.drop.plainText}/>;
+                return (
+                    <div>
+                        <h3>Decrypted Data:</h3>
+                        <textarea className="form-control" rows="10" readOnly={true} value={this.props.drop.plainText}/>
+                    </div>
+                );
+            case NOT_FOUND:
+                return <Error error={this.props.drop.error}/>;
             default:
-                return <Spinner/>;
+                return <div/>;
         }
     }
 }
 
 const mapStateToProps = (state) => ({
-    drop: state.drop
+    drop: state.drop,
+    error: state.drop.error
 });
 
 const mapDispatchToProps = (dispatch) => ({

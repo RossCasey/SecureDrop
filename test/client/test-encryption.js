@@ -1,4 +1,4 @@
-const encryption = require('../../src/client/services/encryption');
+const encryption = require('../../src/client/services/encryptionServices');
 
 describe('Encryption', () => {
     describe('#isCryptoSupported()', () => {
