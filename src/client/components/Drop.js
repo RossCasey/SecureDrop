@@ -89,7 +89,6 @@ class Drop extends Component {
 
     render() {
         const status = this.props.drop.status;
-        console.log(this.props);
         switch(status) {
             case AWAITING_PASSWORD:
                 return <PasswordEntry decrypt={this.decryptDrop}/>;

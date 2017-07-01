@@ -1,5 +1,5 @@
 import { call } from 'redux-funk';
-import { createDrop } from '../services/api';
+import { createDrop } from '../services/drop';
 import {
      CREATE_CREDENTIALS_REQUEST,
      CREATE_CREDENTIALS_SUCCESS,

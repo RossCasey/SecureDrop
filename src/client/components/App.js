@@ -3,7 +3,6 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Creator from './Creator';
 import Drop from './Drop';
 
-
 export default class App extends Component {
     render() {
         return (
@@ -17,7 +16,3 @@ export default class App extends Component {
         );
     }
 }
-
-
-
-

@@ -1,5 +1,5 @@
 import { call } from 'redux-funk';
-import { getDrop, decryptDrop } from '../services/api';
+import { getDrop, decryptDrop } from '../services/drop';
 import {
     GET_DROP_REQUEST,
     GET_DROP_SUCCESS,
