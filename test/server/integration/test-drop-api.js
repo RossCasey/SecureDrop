@@ -59,15 +59,6 @@ describe('Drop API', () => {
         });
   });
 
-  it('should return error when GET is called on /drop', () => {
-
-    const app = App({});
-
-    return request(app)
-      .get('/api/v1/drop')
-      .expect(404);
-  });
-
   it('should be able to return cipherText for just created drop', () => {
     const db = {
       _cipherText: null,
