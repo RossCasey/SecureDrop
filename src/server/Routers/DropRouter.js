@@ -18,7 +18,7 @@ module.exports = (db) => {
   router.get('/:id', (req, res) => {
     drop.get(req.params.id).then((cipherText) => {
       if( ! cipherText) {
-        res.status(404).json({error: 'drop not found'});
+        return res.status(404).json({error: 'drop not found'});
       }
       res.json({cipherText: cipherText});
     }).catch((err) => {
