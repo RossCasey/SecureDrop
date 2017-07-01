@@ -1,4 +1,4 @@
-const encryption = require('../../src/client/encryption');
+const encryption = require('../../src/client/services/encryption');
 
 describe('Encryption', () => {
     describe('#isCryptoSupported()', () => {
@@ -27,7 +27,7 @@ describe('Encryption', () => {
         });
     });
 
-    describe('#keyToString()', () => {
+    describe('#exportKey()', () => {
         it('should return base64 encoded key', () => {
             return encryption.generateKey().then((key) => {
                 return encryption.exportKey(key).then((keyString) => {
@@ -35,9 +35,17 @@ describe('Encryption', () => {
                 });
             });
         });
+
+        it('should return key without trailing ==', () => {
+            return encryption.generateKey().then((key) => {
+                return encryption.exportKey(key).then((keyString) => {
+                    expect(keyString).to.not.contain('==');
+                });
+            });
+        });
     });
 
-    describe('#stringToKey()', () => {
+    describe('#importKey()', () => {
         it('should return a key', () => {
             return encryption.generateKey().then((key) => {
                 return encryption.exportKey(key).then((keyString) => {

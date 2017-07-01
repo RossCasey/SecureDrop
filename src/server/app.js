@@ -12,8 +12,7 @@ module.exports = (db) => {
   app.use('/api/v1/drop', DropRouter(db));
 
   if(process.env.APP_ENV === 'development') {
-    app.use('/test', express.static('test/client/index.html'));
-    app.use('/test/script.js', express.static('test/client/test-bundle.js'));
+    app.use('/test/', express.static('test/client/'));
   }
 
   app.use('/', express.static('src/client/public'));

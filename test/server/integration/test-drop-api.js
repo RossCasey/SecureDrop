@@ -12,7 +12,7 @@ describe('Drop API', () => {
           return Promise.resolve();
         }
       }
-    }
+    };
 
     const app = App(db);
 
@@ -47,7 +47,7 @@ describe('Drop API', () => {
             return Promise.resolve();
           }
         }
-      }
+      };
 
       const app = App(db);
 
@@ -66,7 +66,7 @@ describe('Drop API', () => {
     return request(app)
       .get('/api/v1/drop')
       .expect(404);
-  })
+  });
 
   it('should be able to return cipherText for just created drop', () => {
     const db = {
@@ -81,7 +81,7 @@ describe('Drop API', () => {
         },
         claim(id) { return Promise.resolve() }
       }
-    }
+    };
 
     const app = App(db);
 
@@ -108,7 +108,7 @@ describe('Drop API', () => {
           return Promise.reject(new Error('error'));
         }
       }
-    }
+    };
 
     const app = App(db);
 

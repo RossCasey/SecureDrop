@@ -21,12 +21,13 @@ export function exportKey(key) {
         'raw',
         key
     ).then((keyBuffer) => {
-        return Base64Array.encode(keyBuffer);
+        const base64 = Base64Array.encode(keyBuffer);
+        return base64.substring(0, base64.length - 2); //remove ==
     });
 }
 
 export function importKey(string) {
-    const buffer = Base64Array.decode(string);
+    const buffer = Base64Array.decode(string + '==');
     return window.crypto.subtle.importKey(
         'raw',
         buffer,

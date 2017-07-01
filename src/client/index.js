@@ -1,4 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render} from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './components/App';
+import { createStore } from 'redux';
+import rootReducer from './reducers';
+import { runFunks } from 'redux-funk';
 
-ReactDOM.render( <h1>Hello, world!</h1>, document.getElementById('container'));
+const store = createStore(
+    rootReducer
+);
+
+runFunks(store);
+
+render(
+    <Provider store={store}>
+       <App/>
+    </Provider>,
+    document.getElementById('container')
+);
