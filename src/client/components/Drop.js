@@ -14,8 +14,8 @@ class Drop extends Component {
 
     componentDidMount() {
         const dropId = this.props.match.params.dropId;
-        const {getDropRequest} = this.props.actions;
-        getDropRequest(dropId);
+        const {browserSupportedRequest} = this.props.actions;
+        browserSupportedRequest(true, dropId);
     }
 
     decryptDrop(password) {
@@ -51,6 +51,7 @@ class Drop extends Component {
 
 const mapStateToProps = (state) => ({
     drop: state.drop,
+    supported: state.browser.supported,
     error: state.drop.error
 });
 

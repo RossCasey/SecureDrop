@@ -1,5 +1,5 @@
 import {createCredentialsSuccess, createCredentialsFailure} from '../actions/credentialActions';
-import {getDropSuccess, getDropFailure, decryptDropSuccess, decryptDropFailure} from '../actions/dropActions';
+import {getDropSuccess, getDropFailure, decryptDropSuccess, decryptDropFailure, getDropRequest} from '../actions/dropActions';
 import {browserSupportedSuccess, browserSupportedFailure} from '../actions/browserActions';
 import {generateKey, encrypt, exportKey, importKey, decrypt, isCryptoSupported} from './encryptionServices';
 import {DROP_DOES_NOT_EXIST, INVALID_PASSWORD, SERVER_ERROR, INVALID_DATA, BROWSER_NOT_SUPPORTED} from '../constants/errors';
@@ -34,18 +34,15 @@ function createDropLink(dropId) {
 }
 
 export function getDrop(id) {
-    if(isCryptoSupported()) {
-        return getDropById(id).then((cipherText) => {
-            return Promise.resolve(getDropSuccess(cipherText));
-        }).catch((err) => {
-            const notFound = (err.message === 'Not Found');
-            if(notFound) {
-                return Promise.resolve(getDropFailure(UNRECOVERABLE, DROP_DOES_NOT_EXIST));
-            }
-            return Promise.resolve(getDropFailure(AWAITING_PASSWORD, SERVER_ERROR));
-        });
-    }
-    return Promise.resolve(browserSupportedFailure());
+    return getDropById(id).then((cipherText) => {
+        return Promise.resolve(getDropSuccess(cipherText));
+    }).catch((err) => {
+        const notFound = (err.message === 'Not Found');
+        if(notFound) {
+            return Promise.resolve(getDropFailure(UNRECOVERABLE, DROP_DOES_NOT_EXIST));
+        }
+        return Promise.resolve(getDropFailure(AWAITING_PASSWORD, SERVER_ERROR));
+    });
 }
 
 export function decryptDrop(password, cipherText) {

@@ -50,7 +50,7 @@ class Creator extends Component {
     }
 
     render() {
-        return (
+        const form = (
             <div className="form-group">
                 {this.hasError() && <Error {...this.props}/>}
                 <h3>Enter Data To Securely Transfer:</h3>
@@ -60,11 +60,14 @@ class Creator extends Component {
                 {this.hasDropBeenCreated() && <CredentialsTable {...this.props}/>}
             </div>
         );
+
+        return this.props.supported ? form : <div/>;
     }
 }
 
 const mapStateToProps = (state) => ({
     credentials: state.credentials.list,
+    supported: state.browser.supported,
     error: state.credentials.error
 });
 
