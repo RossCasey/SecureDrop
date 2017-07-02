@@ -23,7 +23,7 @@ class PasswordEntry extends Component {
                 <h3>Enter Password:</h3>
                 <div className="form-group">
                     <input type="text" className="form-control" placeholder="Password" onChange={this.onPasswordChange}/>
-                    <button className="btn btn-primary btn-lg control-button">Decrypt</button>
+                    <button className="btn btn-primary btn-lg spacer">Decrypt</button>
                 </div>
             </form>
         );

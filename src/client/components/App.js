@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Creator from './Creator';
 import Drop from './Drop';
-import BrowserNotSupported from './BrowserNotSupported';
+import BrowserSupport from './BrowserSupport';
 import Error404 from './404';
 import '../public/css/App.css';
 import 'jquery';
@@ -33,7 +33,7 @@ export default class App extends Component {
                                 <span className="icon-bar"/>
                                 <span className="icon-bar"/>
                             </button>
-                            <a className="navbar-brand" href="#">Secure Drop</a>
+                            <a className="navbar-brand" href="/">Secure Drop</a>
                         </div>
                         <NavBarRight/>
                     </div>
@@ -46,7 +46,7 @@ export default class App extends Component {
                                 <Switch>
                                     <Route exact path="/" component={Creator}/>
                                     <Route path="/drop/:dropId" component={Drop}/>
-                                    <Route path="/supportedBrowsers" component={BrowserNotSupported}/>
+                                    <Route path="/supportedBrowsers" component={BrowserSupport}/>
                                     <Route component={Error404}/>
                                 </Switch>
                             </BrowserRouter>
