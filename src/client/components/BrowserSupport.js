@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-class BrowserNotSupported extends Component {
+class BrowserSupport extends Component {
     render() {
         return (
             <div>
-                <h3>Browser not supported.</h3>
+                <h3>Supported Browsers</h3>
                 <p>Please use one of the browsers list below.</p>
                 <div className="table-responsive">
                     <table className="table table-bordered align-center">
@@ -43,4 +43,4 @@ class BrowserNotSupported extends Component {
     }
 }
 
-export default BrowserNotSupported;
+export default BrowserSupport;
