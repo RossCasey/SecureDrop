@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Creator from './Creator';
 import Drop from './Drop';
 import BrowserNotSupported from './BrowserNotSupported';
+import Error404 from './404';
 import '../public/css/App.css';
 import 'jquery';
 import 'bootstrap';
@@ -46,7 +47,7 @@ export default class App extends Component {
                                     <Route exact path="/" component={Creator}/>
                                     <Route path="/drop/:dropId" component={Drop}/>
                                     <Route path="/supportedBrowsers" component={BrowserNotSupported}/>
-                                    <Route render={() => <h1>404</h1>}/>
+                                    <Route component={Error404}/>
                                 </Switch>
                             </BrowserRouter>
                         </div>
