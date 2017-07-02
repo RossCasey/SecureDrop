@@ -1,6 +1,6 @@
 {
   "name": "secure-drop",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A self contained site for the transfer of text data securely.",
   "main": "src/server/index.js",
   "scripts": {
