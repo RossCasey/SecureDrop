@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../public/css/BrowserNotSupported.css';
 
 class BrowserNotSupported extends Component {
     render() {
@@ -8,7 +7,7 @@ class BrowserNotSupported extends Component {
                 <h3>Browser not supported.</h3>
                 <p>Please use one of the browsers list below.</p>
                 <div className="table-responsive">
-                    <table className="table table-bordered table-align-center">
+                    <table className="table table-bordered align-center">
                         <thead>
                         <tr>
                             <th>Firefox</th>
