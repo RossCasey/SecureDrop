@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actionCreators from '../actions/credentialActions';
+import * as actionCreators from '../actions';
 import CredentialsTable from './CredentialsTable';
 import Error from './Error';
 import '../public/css/Creator.css';
@@ -16,6 +16,11 @@ class Creator extends Component {
         this.hasDropBeenCreated = this.hasDropBeenCreated.bind(this);
         this.clear = this.clear.bind(this);
         this.hasError = this.hasError.bind(this);
+    }
+
+    componentDidMount() {
+        const {browserSupportedRequest} = this.props.actions;
+        browserSupportedRequest();
     }
 
     createCredentials() {
