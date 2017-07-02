@@ -1,6 +1,7 @@
-[![Build Status](https://travis-ci.org/RossCasey/SecureDrop.svg?branch=master)](https://travis-ci.org/RossCasey/SecureDrop)
 
 # Secure Drop
+[![Build Status](https://travis-ci.org/RossCasey/SecureDrop.svg?branch=master)](https://travis-ci.org/RossCasey/SecureDrop)
+===========
 
 ## Description
 Secure Drop is an application that allows data to be shared securely without the need to setup complicated systems.
