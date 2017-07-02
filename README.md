@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/RossCasey/SecureDrop.png?branch=master)](https://travis-ci.org/RossCasey/SecureDrop)
+
 # Secure Drop
 
 ## Description
