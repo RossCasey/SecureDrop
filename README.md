@@ -29,7 +29,8 @@ Run `npm test`
 3. Open a browser and navigate to `http://localhost:3000/test`
 
 ## Security
-In order to make the application as secure as possible, Secure Drop only supports browsers that implement WebCrypto.
+In order to make the application as secure as possible, Secure Drop only supports browsers that implement WebCrypto. Support is
+planned for older browsers using the JavaScript cryptography libraries provided by [Stanford.](https://bitwiseshiftleft.github.io/sjcl/)
 
 ## Browser Support
 | Firefox | Chrome | Opera | Safari | Edge | Internet Explorer | Chrome for iOS | Safari for iOS | Firefox for iOS | Chrome for Android |
