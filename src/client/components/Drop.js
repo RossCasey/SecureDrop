@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actionCreators from '../actions/dropActions';
-import {AWAITING_PASSWORD, DECRYPTED, NOT_FOUND} from '../constants/dropStates';
+import * as actionCreators from '../actions';
+import {AWAITING_PASSWORD, DECRYPTED, UNRECOVERABLE} from '../constants/dropStates';
 import Error from './Error';
 import PasswordEntry from './PasswordEntry';
 
@@ -14,8 +14,8 @@ class Drop extends Component {
 
     componentDidMount() {
         const dropId = this.props.match.params.dropId;
-        const {getDropRequest} = this.props.actions;
-        getDropRequest(dropId);
+        const {browserSupportedRequest} = this.props.actions;
+        browserSupportedRequest(true, dropId);
     }
 
     decryptDrop(password) {
@@ -41,7 +41,7 @@ class Drop extends Component {
                         <textarea className="form-control" rows="10" readOnly={true} value={this.props.drop.plainText}/>
                     </div>
                 );
-            case NOT_FOUND:
+            case UNRECOVERABLE:
                 return <Error error={this.props.drop.error}/>;
             default:
                 return <div/>;
@@ -51,6 +51,7 @@ class Drop extends Component {
 
 const mapStateToProps = (state) => ({
     drop: state.drop,
+    supported: state.browser.supported,
     error: state.drop.error
 });
 

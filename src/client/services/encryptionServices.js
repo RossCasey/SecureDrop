@@ -2,7 +2,7 @@ const Base64Array = require('base64-arraybuffer');
 const Base64 = require('base-64');
 
 export function isCryptoSupported() {
-    return window.crypto !== undefined;
+    return window.crypto.subtle !== undefined;
 }
 
 export function generateKey() {

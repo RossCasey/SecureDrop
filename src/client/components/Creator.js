@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actionCreators from '../actions/credentialActions';
+import * as actionCreators from '../actions';
 import CredentialsTable from './CredentialsTable';
 import Error from './Error';
 import '../public/css/Creator.css';
@@ -16,6 +16,11 @@ class Creator extends Component {
         this.hasDropBeenCreated = this.hasDropBeenCreated.bind(this);
         this.clear = this.clear.bind(this);
         this.hasError = this.hasError.bind(this);
+    }
+
+    componentDidMount() {
+        const {browserSupportedRequest} = this.props.actions;
+        browserSupportedRequest();
     }
 
     createCredentials() {
@@ -45,7 +50,7 @@ class Creator extends Component {
     }
 
     render() {
-        return (
+        const form = (
             <div className="form-group">
                 {this.hasError() && <Error {...this.props}/>}
                 <h3>Enter Data To Securely Transfer:</h3>
@@ -55,11 +60,14 @@ class Creator extends Component {
                 {this.hasDropBeenCreated() && <CredentialsTable {...this.props}/>}
             </div>
         );
+
+        return this.props.supported ? form : <div/>;
     }
 }
 
 const mapStateToProps = (state) => ({
     credentials: state.credentials.list,
+    supported: state.browser.supported,
     error: state.credentials.error
 });
 

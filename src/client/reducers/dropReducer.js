@@ -15,11 +15,7 @@ import {
     PENDING
 } from '../constants/dropStates';
 
-const initialState = {
-    data: {}
-};
-
-const dropReducer = (state = initialState, action) => {
+const dropReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_DROP_REQUEST:
             const { id } = action.payload;
