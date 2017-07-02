@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - "6"
+env:
+- APP_ENV=development
+- DB_MIGRATE=true
+- DB_MIGRATE_FORCE=true
+- DB_DRIVER=sqlite
