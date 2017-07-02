@@ -27,3 +27,11 @@ Run `npm test`
 1. Ensure that `APP_ENV` is set to `development` in the `.env`
 2. Run `npm run webpack-tests`
 3. Open a browser and navigate to `http://localhost:3000/test`
+
+## Security
+In order to make the application as secure as possible, Secure Drop only supports browsers that implement WebCrypto.
+
+## Browser Support
+| Firefox | Chrome | Opera | Safari | Edge | Internet Explorer | Chrome for iOS | Safari for iOS | Firefox for iOS | Chrome for Android |
+|:-------:|:------:|:-----:|:------:|:----:|:-----------------:|:--------------:|:--------------:|:---------------:|:------------------:|
+| 34+ | 41+ | 28+ | X | X | X | X | X | X | 58+ |
